@@ -14,7 +14,7 @@ const getAllUsers = async (req, res) => {
 const getUserById = async (req, res) => {
     const { id } = req.params;
     try {
-        const [rows] = await pool.query('SELECT id, fullname, email, created_at, updated_at FROM users WHERE id = ?', [id]);
+        const [rows] = await pool.query('SELECT id, fullname, email, created_at, updated_at FROM users WHERE user_id = ?', [id]);
         if (rows.length === 0) {
             return res.status(404).json({ error: 'User not found' });
         }
@@ -40,7 +40,7 @@ const updateUser = async (req, res) => {
     const { fullname, email, password } = req.body;
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
-        const [result] = await pool.query('UPDATE users SET fullname = ?, email = ?, password = ? WHERE id = ?', [fullname, email, hashedPassword, id]);
+        const [result] = await pool.query('UPDATE users SET fullname = ?, email = ?, password = ? WHERE user_id = ?', [fullname, email, hashedPassword, id]);
         if (result.affectedRows === 0) {
             return res.status(404).json({ error: 'User not found' });
         }
@@ -53,7 +53,7 @@ const updateUser = async (req, res) => {
 const deleteUser = async (req, res) => {
     const { id } = req.params;
     try {
-        const [result] = await pool.query('DELETE FROM users WHERE id = ?', [id]);
+        const [result] = await pool.query('DELETE FROM users WHERE user_id = ?', [id]);
         if (result.affectedRows === 0) {
             return res.status(404).json({ error: 'User not found' });
         }
