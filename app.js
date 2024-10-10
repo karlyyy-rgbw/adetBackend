@@ -22,7 +22,7 @@ app.use('/api/dept', deptRoutes);
 app.use('/api/crs', crsRoutes);
 app.use('/api/std', stdRoutes);
 
-const PORT = 5008;
+const PORT = 5000;
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
