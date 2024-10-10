@@ -1,7 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/authRoutes');
-const userRoute = require('./routes/userRoute');
+const userRoutes = require('./routes/userRoutes');
+const deptRoutes = require('./routes/deptRoutes');
+const crsRoutes = require('./routes/crsRoute');
+const stdRoutes = require('./routes/stdRoutes');
 
 const app = express();
 app.use(bodyParser.json());
@@ -14,7 +17,10 @@ app.get('/', function(req, res) {
 
 // Endpoint Here
 app.use('/api/auth', authRoutes);
-app.use('/api/user', userRoute);
+app.use('/api/user', userRoutes);
+app.use('/api/dept', deptRoutes);
+app.use('/api/crs', crsRoutes);
+app.use('/api/std', stdRoutes);
 
 const PORT = 5008;
 
