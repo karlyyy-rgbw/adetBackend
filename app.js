@@ -12,7 +12,7 @@ const cors = require('cors');
 app.use(cors());
 
 app.get('/', function(req, res) {
-    res.send('Fritz Imperial, MIT');
+    res.send('Karl Vincent C. Suayan, Girl Codrrr');
 });
 
 // Endpoint Here
