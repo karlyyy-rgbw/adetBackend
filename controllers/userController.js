@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 const getAllUsers = async (req, res) => {
     try {
-        const [rows] = await pool.query('SELECT id, fullname, email, created_at, updated_at FROM users');
+        const [rows] = await pool.query('SELECT user_id, fullname, email, created_at, updated_at FROM users');
         res.json(rows);
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -14,7 +14,7 @@ const getAllUsers = async (req, res) => {
 const getUserById = async (req, res) => {
     const { id } = req.params;
     try {
-        const [rows] = await pool.query('SELECT id, fullname, email, created_at, updated_at FROM users WHERE user_id = ?', [id]);
+        const [rows] = await pool.query('SELECT user_id, fullname, email, created_at, updated_at FROM users WHERE user_id = ?', [id]);
         if (rows.length === 0) {
             return res.status(404).json({ error: 'User not found' });
         }
